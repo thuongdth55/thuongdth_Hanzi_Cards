@@ -143,11 +143,31 @@
             skipEmptyLines: true,
             complete: function(results) {
                 // Lọc dữ liệu
-                allData = results.data.filter(item => item['Status']?.trim() === selectedStatus);
-
+                // allData = results.data.filter(item => item['Status']?.trim() === selectedStatus);
+                allData = results.data.filter(item => {
+                        // Ép kiểu stage về số và trim Status để so sánh an toàn
+                        const stage = Number(item['stage']);
+                        const status = item['Status']?.trim();
+                        // Dùng && (Logical AND) thay vì & (Bitwise)
+                        return status === selectedStatus && stage > 0;
+                });
+                
                 if (selectedStatus === 'Ready' && allData.length > 0) {
                     // ĐẢO NGẪU NHIÊN
-                    shuffleArray(allData);
+                    // shuffleArray(allData);
+                    allData.sort((a, b) => {
+                        const stageA = Number(a['stage']);
+                        const stageB = Number(b['stage']);
+
+                        if (stageA !== stageB) {
+                            // Sắp xếp theo stage tăng dần (1, 2, 3, 4, 5)
+                            return stageA - stageB;
+                        } else {
+                            // Nếu cùng stage, trả về số ngẫu nhiên từ -0.5 đến 0.5
+                            return Math.random() - 0.5;
+                        }
+                    });
+                    
                 }
                 
                 // GIẢI PHÓNG BỘ NHỚ: Xóa kết quả gốc của PapaParse
