@@ -149,7 +149,8 @@
                         const stage = Number(item['stage']);
                         const status = item['Status']?.trim();
                         // Dùng && (Logical AND) thay vì & (Bitwise)
-                        return status === selectedStatus && stage > 0;
+                        // return status === selectedStatus && stage > 0;
+                        return status === selectedStatus || (status === 'Ready' && stage > 0);
                 });
                 
                 if (selectedStatus === 'Ready' && allData.length > 0) {
