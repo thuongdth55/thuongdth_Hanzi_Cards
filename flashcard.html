@@ -76,7 +76,11 @@
         .mnemonic-img { width: 100%; height: 120px; object-fit: cover; border-radius: 15px; background: #eee; }
         .stroke-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; background: white; padding: 10px; border-radius: 15px; }
         .stroke-item { width: 100%; aspect-ratio: 1/1; object-fit: contain; }
-        
+        .lang-link {
+                color: #3498db;        /* Đổi màu text thành xanh dương */
+                text-decoration: none; /* Bỏ gạch chân mặc định nếu muốn */
+                font-weight: bold;     /* Làm chữ đậm cho dễ bấm */
+        }
         /* Nav Control tối ưu cho Android */
         .nav-control {
             position: fixed;
@@ -241,6 +245,10 @@
                     </div>
                 </div>
 
+                <a class="lang-link" href="https://www.youtube.com/results?search_query=${item['Từ tiếng Trung']}+basic" style="color: #3498db; font-weight: bold; text-decoration: none;">
+                    Watch Video
+                </a>
+                
                 <div class="section-title">👣 Thành phần cấu tạo</div>
                 <div class="component-box">
                     <strong>${nl2br(item['Thành phần cấu tạo (Bộ thủ)'])}</strong>
